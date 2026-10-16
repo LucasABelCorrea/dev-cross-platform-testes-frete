@@ -7,6 +7,7 @@ class CalculadoraFrete {
     required double peso,
     required double distanciaKm,
     required double valorCompra,
+    String cupom = ""
   }) {
     late ResultadoFrete resultado;
 
@@ -37,6 +38,10 @@ class CalculadoraFrete {
 
     if (valorCompra >= 350) {
       return resultado.copyWith (valor: 0.0);
+    }
+
+    if (cupom.toUpperCase() == 'FRETEGRATIS') {
+      return resultado.copyWith(valor: 0.0);
     }
      
     return resultado;

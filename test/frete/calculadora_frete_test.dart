@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simulador_frete/frete/calculadora_frete.dart';
 import 'package:simulador_frete/model/tipo_frete.dart';
 
+
 void main() {
   final CalculadoraFrete calculadoraFrete = CalculadoraFrete();
 
@@ -79,6 +80,18 @@ void main() {
       peso: peso,
       distanciaKm: distanciaKm,
       valorCompra: valorCompra
+    );
+
+    expect(resultado.valor, closeTo(0.0, 0.01));
+  });
+
+  test('cupom FRETEGRATIS deve zerar o frete', () {
+    final resultado = calculadoraFrete.calcular(
+      tipo: TipoFrete.economico,
+      peso: 2.0,
+      distanciaKm: 100.0,
+      valorCompra: 100.0,
+      cupom: 'FRETEGRATIS',
     );
 
     expect(resultado.valor, closeTo(0.0, 0.01));
